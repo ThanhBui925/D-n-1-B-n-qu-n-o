@@ -17,6 +17,15 @@ $act = $_GET['act'] ?? '/';
 
 match ($act) {
     // route
-    'danh-muc' => (new AdminDanhMucController())->danhSachDanhMuc(), 
+    'danh-muc' => (new AdminDanhMucController())->danhSachDanhMuc(),
+    'form-them-danh-muc' => (new AdminDanhMucController())->formAddDanhMuc(), //Phương thức hiển thị form
+    'them-danh-muc' => (new AdminDanhMucController())->postAddDanhMuc(), //Xử lí nhận và post vào CSDL
+
+   
+    'form-sua-danh-muc' => (new AdminDanhMucController())->formEditDanhMuc(), //Phương thức hiển thị form sửa
+    'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(), //Xử lí nhận và cập nhật vào CSDL 
+    'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(), //Xử lí nhận và cập nhật vào CSDL 
+
+   
    
 };

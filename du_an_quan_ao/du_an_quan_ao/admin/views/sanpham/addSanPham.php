@@ -35,7 +35,7 @@
                 <h3 class="card-title">Thêm sản phẩm</h3>
               </div>
 
-              <form action="<?= BASE_URL_ADMIN . '?act=them-san-pham'?>" method="POST">
+              <form action="<?= BASE_URL_ADMIN . '?act=them-san-pham'?>" method="POST" enctype="multipart/form-data">
                 <div class="row card-body ">
                   <div class="form-group col-12">
                     <label >Tên sản phẩm</label>
@@ -75,22 +75,12 @@
                   </div>
 
                   <div class="form-group col-6">
-                    <label >Hình ảnh</label>
-                    <input type="file" class="form-control" name="hinh_anh"  >
-                    <?php if(isset($error["hinh_anh"])){ ?>
-                        <p class="text-danger"><?= $error["hinh_anh"]?></p>
-
-                    <?php }?>
+                    <label >Album ảnh</label>
+                    <input type="file" class="form-control" name="img_array[]" multiple>
+                    
                   </div>
                   
-                  <div class="form-group col-6">
-                    <label >Hình ảnh</label>
-                    <input type="file" class="form-control" name="hinh_anh"  >
-                    <?php if(isset($error["hinh_anh"])){ ?>
-                        <p class="text-danger"><?= $error["hinh_anh"]?></p>
-
-                    <?php }?>
-                  </div>
+                
 
                   <div class="form-group col-6">
                     <label >Số lượng</label>
@@ -112,14 +102,14 @@
 
                   <div class="form-group col-6">
                     <label >Danh mục</label>
-                      <select class="form-control" name="danh_muc_id" id="exampleFormControlSelect1">
+                      <select class="form-control" name="category_id" id="exampleFormControlSelect1">
                         <option selected disabled>Chọn danh mục sản phẩm</option>
                         <?php foreach($listDanhMuc as $danhMuc):?>
                           <option value="<?= $danhMuc['id']?>"><?= $danhMuc['ten_danh_muc']?></option>
                         <?php endforeach ?>
                       </select>
-                    <?php if(isset($error["danh_muc"])){ ?>
-                        <p class="text-danger"><?= $error["danh_muc"]?></p>
+                    <?php if(isset($error["category_id"])){ ?>
+                        <p class="text-danger"><?= $error["category_id"]?></p>
 
                     <?php }?>
                   </div>

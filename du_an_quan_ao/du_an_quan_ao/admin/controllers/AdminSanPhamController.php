@@ -1,5 +1,4 @@
 <?php
-session_start();
 class AdminSanPhamController{
   
         public $modelSanPham;
@@ -23,32 +22,74 @@ class AdminSanPhamController{
           require_once './views/sanpham/addSanPham.php';
         } 
 
-//         public function postAddDanhMuc(){
-//           // hàm này xử lí thêm dữ liệu
-//           // Kiểm tra xem dữ liệu có phải được submit lên không
-//           if($_SERVER['REQUEST_METHOD'] == "POST"){
-//             // Lấy ra dữ liệu
-//             $ten_danh_muc = $_POST['ten_danh_muc'];
-//             $mo_ta = $_POST['mo_ta'];
+        public function postAddSanPham(){
+          // hàm này xử lí thêm dữ liệu
+          // Kiểm tra xem dữ liệu có phải được submit lên không
+          if($_SERVER['REQUEST_METHOD'] == "POST"){
+            // Lấy ra dữ liệu
+            $ten_san_pham = $_POST['ten_san_pham'];
+            $gia_san_pham = $_POST['gia_san_pham'];
+            $gia_khuyen_mai = $_POST['gia_khuyen_mai'];
+            $so_luong = $_POST['so_luong'];
+            $ngay_nhap = $_POST['ngay_nhap'];
+            $mo_ta = $_POST['mo_ta'];
+            $category_id = $_POST['category_id'];
+            var_dump($category_id);
+            $trang_thai = $_POST['trang_thai'];
+            var_dump($trang_thai);
 
-//             // Tạo 1 mảng trống chứa dữ liệu 
-//             $error = [];
-//             if(empty($ten_danh_muc)){
-//               $error["ten_danh_muc"] = "Tên danh mục không được bỏ trống !";
-//             }
+            $hinh_anh = $_FILES["hinh_anh"];
+            // Lưu hình ảnh vào 
+            $file_thumb = uploadFile($hinh_anh, './uploads/');
 
-//             // Nếu không có lỗi thì tiến hành thêm danh mục
-//             if(empty($error)){
-//               // Nếu không có lỗi tiến hành thêm danh mục
-//               // var_dump("đã nhận dc dữ liệu");
-//               $this->modelDanhMuc->insertDanhMuc($ten_danh_muc, $mo_ta);
-//               header("Location: " .BASE_URL_ADMIN. '?act=danh-muc');
-//               exit();
-//             }else
-//               // Nếu có lỗi trả về form và lỗi
-//               require_once './views/danhmuc/addDanhMuc.php';
-//           }
-//         } 
+            // mảng hình ảnh [album]
+            $img_array = $_FILES["img_array"];
+
+            // Tạo 1 mảng trống chứa dữ liệu 
+            $error = [];
+            if(empty($ten_san_pham)){
+              $error["ten_san_pham"] = "Tên sản phẩm không được bỏ trống !";
+            }
+            if(empty($so_luong)){
+              $error["so_luong"] = "Số lượng sản phẩm không được bỏ trống !";
+            }
+            if(empty($gia_san_pham)){
+              $error["gia_san_pham"] = "Giá sản phẩm không được bỏ trống !";
+            }
+            if(empty($gia_khuyen_mai)){
+              $error["gia_khuyen_mai"] = "Giá khuyến mãi sản phẩm không được bỏ trống !";
+            }
+            if(empty($ngay_nhap)){
+              $error["ngay_nhap"] = "Ngày nhập sản phẩm không được bỏ trống !";
+            }
+            if(empty($trang_thai)){
+              $error["trang_thai"] = "Trạng thái sản phẩm phải chọn!";
+            }
+            if(empty($category_id)){
+              $error["category_id"] = "Danh mục sản phẩm phải chọn!";
+            }
+
+            // Nếu không có lỗi thì tiến hành thêm sản phẩm
+            if(empty($error)){
+              // Nếu không có lỗi tiến hành thêm sản phẩm
+              // var_dump("đã nhận dc dữ liệu");
+              $this->modelSanPham->insertSanPham($ten_san_pham, 
+                                                $gia_san_pham,
+                                                $gia_khuyen_mai,
+                                                $so_luong, 
+                                                $ngay_nhap,
+                                                $mo_ta,
+                                                $category_id,
+                                                $trang_thai,
+                                                $file_thumb
+                                              );
+              header("Location: " .BASE_URL_ADMIN. '?act=san-pham');
+              exit();
+            }else
+              // Nếu có lỗi trả về form và lỗi
+              require_once './views/sanpham/addSanPham.php';
+          }
+        } 
 // // End Thêm danh mục
 
 

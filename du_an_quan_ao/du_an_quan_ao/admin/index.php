@@ -25,6 +25,17 @@ match ($act) {
     'form-sua-danh-muc' => (new AdminDanhMucController())->formEditDanhMuc(), //Phương thức hiển thị form sửa
     'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(), //Xử lí nhận và cập nhật vào CSDL 
     'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(), //Xử lí nhận và cập nhật vào CSDL 
+    // end route danh mục
+
+    // route sản phẩm
+    'san-pham' => (new AdminSanPhamController())->danhSachSanPham(),
+    'form-them-san-pham' => (new AdminSanPhamController())->formAddSanPham(), //Phương thức hiển thị form
+    // 'them-san-pham' => (new AdminSanPhamController())->postAddSanPham(), //Xử lí nhận và post vào CSDL
+
+   
+    // 'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(), //Phương thức hiển thị form sửa
+    // 'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(), //Xử lí nhận và cập nhật vào CSDL 
+    // 'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(), //Xử lí nhận và cập nhật vào CSDL 
 
    
    

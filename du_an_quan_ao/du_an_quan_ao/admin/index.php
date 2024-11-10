@@ -38,6 +38,8 @@ match ($act) {
     'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(), //Xử lí nhận và cập nhật vào CSDL 
     'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(), //Xử lí nhận và cập nhật vào CSDL 
 
+    'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(), //Phương thức hiển thị form sửa
+
    
    
 };

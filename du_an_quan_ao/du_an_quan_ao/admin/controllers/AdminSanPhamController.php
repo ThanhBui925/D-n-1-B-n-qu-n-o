@@ -332,5 +332,22 @@ class AdminSanPhamController{
           exit();
         }
 
+        public function detailSanPham(){
+          // hàm này hiện form nhập
+          // Lấy ra thông tin của sản phẩm cần sửa đã viết ở model
+          $id = $_GET["id_san_pham"];
+
+          $sanPham = $this->modelSanPham->getDetailSanPham($id);
+
+          $listAnhSanPham = $this->modelSanPham->getListAnhSanPham($id);
+          
+          if($sanPham){
+            require_once './views/sanpham/detailSanPham.php';
+      
+          }else{
+            header("Location: " .BASE_URL_ADMIN. '?act=san-pham');
+            exit();
+          } 
+      }
         // $_SESSION['message'] = 'Xóa sản phẩm thành công'; // Thông báo xóa thành công
 }

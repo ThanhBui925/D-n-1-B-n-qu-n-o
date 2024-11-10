@@ -34,9 +34,9 @@ class AdminSanPhamController{
             $ngay_nhap = $_POST['ngay_nhap'];
             $mo_ta = $_POST['mo_ta'];
             $category_id = $_POST['category_id'];
-            var_dump($category_id);
+            // var_dump($category_id);
             $trang_thai = $_POST['trang_thai'];
-            var_dump($trang_thai);
+            // var_dump($trang_thai);
 
             $hinh_anh = $_FILES["hinh_anh"];
             // Lưu hình ảnh vào 

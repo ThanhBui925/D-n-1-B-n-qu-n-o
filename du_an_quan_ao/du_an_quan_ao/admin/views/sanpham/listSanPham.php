@@ -74,7 +74,7 @@
                           <td><?= $sanPham["ten_san_pham"] ?></td>
                           <td>
                             <img src=" <?= BASE_URL . $sanPham["hinh_anh"] ?>" style="width:100px" alt=""
-                            onerror="this.onerror=null; this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvy_OVj3C_zrVYIq7145SCH-Sf1LJZSXxJPw&s'"
+                            onerror="this.onerror=null; this.src='https://png.pngtree.com/png-vector/20190820/ourlarge/pngtree-no-avatar-vector-isolated-on-white-background-png-image_1694546.jpg'"
                             >
                           </td>
                           <td><?= $sanPham["gia_san_pham"] ?></td>

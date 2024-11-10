@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 // Require file Common
 require_once '../commons/env.php'; // Khai báo biến môi trường
 require_once '../commons/function.php'; // Hàm hỗ trợ
@@ -33,9 +33,10 @@ match ($act) {
     'them-san-pham' => (new AdminSanPhamController())->postAddSanPham(), //Xử lí nhận và post vào CSDL
 
    
-    // 'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(), //Phương thức hiển thị form sửa
-    // 'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(), //Xử lí nhận và cập nhật vào CSDL 
-    // 'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(), //Xử lí nhận và cập nhật vào CSDL 
+    'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(), //Phương thức hiển thị form sửa
+    'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(), //Xử lí nhận và cập nhật vào CSDL 
+    'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(), //Xử lí nhận và cập nhật vào CSDL 
+    'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(), //Xử lí nhận và cập nhật vào CSDL 
 
    
    

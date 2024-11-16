@@ -75,39 +75,52 @@
       </div>
     </div>
  
-  <ul class="nav nav-tabs row mt-4" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Bình luận của sản phẩm</button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="hone" role="tabpanel" aria-labelledby="home-tab"></div>
-    <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                  <th>#</th>
-                  <th>Tên người bình luận</th>
-                  <th>Nội dung</th>
-                  <th>Ngày đăng</th>
-                  <th>Thao tác</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                  <td>1</td>
-                  <td>Nguyễn Quang Quyền</td>
-                  <td>Sản phẩm hơi cũ, form ọp ẹp</td>
-                  <td>20/07/2024</td>
-                  <td>
-                   <div class="btn-group">
-                    <a href="#"><button class="btn btn-warning">Ẩn</button></a>
-                    <a href="#"><button class="btn btn-danger">Xóa</button></a>
-                   </div>
-                  </td>
-            </tr>
-            </tbody>
-          </table>
-  </div>
+    <div class="col-12">
+            <h2>Bình luận của sản phẩm</h2>
+            <div>
+            <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Người bình luận</th>
+                    <th>Nội dung</th>
+                    <th>Ngày bình luận</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($listBinhLuan as $key => $binhLuan):?>
+                        <tr>
+                          <td><?= $key+1 ?></td>
+                          <td>
+                            <a target="_blank" href="<?= BASE_URL_ADMIN . '?act=chi-tiet-khach-hang&id_khach_hang=' .$binhLuan['user_id']?>"><?= $binhLuan["ho_ten"] ?></a>
+                          </td>
+                          <td><?= $binhLuan["noi_dung"] ?></td>
+                          <td><?= $binhLuan["ngay_dang"] ?></td>
+                          <td><?= $binhLuan["trang_thai"] == 1 ? "Hiển thị" : "Bị ẩn" ?></td>
+                        
+                          <td>
+                             <form action="<?= BASE_URL_ADMIN . '?act=update-trang-thai-binh-luan'?>" method="post">
+                                <input type="hidden" name="id_binh_luan" value="<?=$binhLuan['id']?>">
+                                <input type="hidden" name="name_view" value="detail_sanpham">
+                              
+                                <button   onclick="return confirm('Bạn có chắc chắn muốn ẩn bình luận này không?')" class="btn btn-warning">
+                                  <?= $binhLuan['trang_thai'] == 1 ? "Ẩn" : "Bỏ ẩn" ?>
+                                </button>
+                             </form>  
+                            </div>
+                            
+                           
+                          </td>
+                        </tr>
+                    <?php endforeach ?>
+                  
+                  </tbody>
+                 
+                </table>
+            </div>
+ 
   <!-- /.card-body -->
 </div>
 <!-- /.card -->
@@ -122,7 +135,7 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,

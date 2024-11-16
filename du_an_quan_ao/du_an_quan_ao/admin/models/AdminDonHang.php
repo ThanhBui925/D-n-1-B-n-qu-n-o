@@ -107,6 +107,28 @@ public function updateDonHang($id, $ten_nguoi_nhan, $sdt_nguoi_nhan, $email_nguo
         echo "Lỗi".      $e->getMessage();
     }
 }
+
+public function getDonHangFromKhachHang($id){
+    try{
+        // $sql = "SELECT * FROM products";
+        $sql = "SELECT orders.*, order_status.ten_trang_thai
+        FROM orders
+        INNER JOIN order_status ON orders.order_status_id = order_status.id
+        WHERE orders.user_id = :id
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute([':id' => $id]);
+
+        return $stmt->fetchAll();
+    }catch(Exception $e){
+        echo "Lỗi".      $e->getMessage();
+    }
+}
+
+
+
 }
 
 

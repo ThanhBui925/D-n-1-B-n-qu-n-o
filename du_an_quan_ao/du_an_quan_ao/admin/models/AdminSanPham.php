@@ -228,6 +228,90 @@ public function destroySanPham($id){
     }
 }
 
+// BÌNH LUẬN 
+
+public function getBinhLuanFromKhachHang($id){
+    try{
+        // $sql = "SELECT * FROM products";
+        $sql = "SELECT comments.*, products.ten_san_pham
+        FROM comments
+        INNER JOIN products ON comments.product_id = products.id
+        WHERE comments.user_id = :id
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute([':id' => $id]);
+
+        return $stmt->fetchAll();
+    }catch(Exception $e){
+        echo "Lỗi".      $e->getMessage();
+    }
+}
+public function getDetailBinhLuan($id){
+    try{
+        $sql = "SELECT * FROM comments WHERE id = :id";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute([':id'=>$id]);
+
+        return $stmt->fetch();
+    }catch(Exception $e){
+        echo "Lỗi". $e->getMessage();
+    }
+}
+
+public function updateTrangThaiBinhLuan($id,$trang_thai){
+    try{
+        $sql = "UPDATE comments 
+        SET trang_thai = :trang_thai
+        WHERE id = :id";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute([
+            ':trang_thai' => $trang_thai,
+            ':id'=> $id,
+            
+        ]);
+        return true;
+        
+    }catch(Exception $e){
+        echo "Lỗi".      $e->getMessage();
+    }
+}
+
+public function getBinhLuanFromSanPham($id){
+    try{
+        // $sql = "SELECT * FROM products";
+        $sql = "SELECT comments.*, users.ho_ten
+        FROM comments
+        INNER JOIN users ON comments.user_id = users.id
+        WHERE comments.product_id = :id
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute([':id' => $id]);
+
+        return $stmt->fetchAll();
+    }catch(Exception $e){
+        echo "Lỗi".      $e->getMessage();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

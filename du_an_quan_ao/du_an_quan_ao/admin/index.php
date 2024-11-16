@@ -11,6 +11,7 @@ require_once './controllers/AdminDonHangController.php';
 require_once './controllers/AdminBaoCaoThongKeController.php';
 require_once './controllers/AdminTaiKhoanController.php';
 
+
 // Require toàn bộ file Models
 require_once './models/AdminDanhMuc.php';
 require_once './models/AdminSanPham.php';
@@ -42,6 +43,9 @@ match ($act) {
     'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(), //Xử lí nhận và cập nhật vào CSDL 
     'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(), //Phương thức hiển thị form sửa
 
+    // route bình luận (update ẩn bỏ ẩn)
+    'update-trang-thai-binh-luan'=> (new AdminSanPhamController())->updateTrangThaiBinhLuan(),
+
 
 
     // route quản lý đơn hàng
@@ -56,6 +60,20 @@ match ($act) {
     // route quản lí tài khoản
         // quản lí tài khoản quản trị
         'list-tai-khoan-quan-tri' =>(new AdminTaiKhoanController())->danhSachQuanTri(),
+        'form-them-quan-tri' =>(new AdminTaiKhoanController())->formAddQuanTri(),
+        'them-quan-tri' =>(new AdminTaiKhoanController())->postAddQuanTri(),
+        'form-sua-quan-tri'=>(new AdminTaiKhoanController())->formEditQuanTri(),
+        'sua-quan-tri'=>(new AdminTaiKhoanController())->postEditQuanTri(),
+
+        // route reset password tài khoản 
+        'reset-password'=>(new AdminTaiKhoanController())->resetPassword(),
+
+        // Quản lý tài khoản khách hàng
+        'list-tai-khoan-khach-hang' =>(new AdminTaiKhoanController())->danhSachKhachHang(),
+        'form-sua-khach-hang'=>(new AdminTaiKhoanController())->formEditKhachHang(),
+        'sua-khach-hang'=>(new AdminTaiKhoanController())->postEditKhachHang(),
+        'chi-tiet-khach-hang' =>(new AdminTaiKhoanController())->detailKhachHang(),
+
    
    
 };

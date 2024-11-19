@@ -216,9 +216,108 @@ class AdminTaiKhoanController{
 }
 
 
+public function formLogin(){
+  require_once "./views/auth/formLogin.php";
+  deleteSessionError();
+}
+ public function login(){
+  if($_SERVER['REQUEST_METHOD'] == "POST"){
+    // Lấy email và pass gửi lên từ form
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    // var_dump($password);
 
+    // Xử lí kiểm tra thông tin đăng nhập
+    $user = $this->modelTaiKhoan->checkLogin($email, $password);
+
+    if($user == $email){ // TH đăng nhập thành công
+      // Lưu thông tin vào session
+      $_SESSION["user_admin"] = $user;
+      header("Location: " . BASE_URL_ADMIN);
+      exit();
+    }else{
+      // Lỗi thì lưu lỗi vào SESSION
+      $_SESSION["error"] = $user;
+      // var_dump($_SESSION['error']);die();
+      $_SESSION["flash"] = true;
+      header("Location: " .BASE_URL_ADMIN. "?act=login-admin");
+      exit();
+
+    }
+  }
+ }
+ public function logout(){
+  if(isset($_SESSION["user_admin"])){
+    unset($_SESSION['user_admin']);
+    header("Location: ". BASE_URL_ADMIN . "?act=login-admin");
+  }
+}
+
+public function formEditCaNhanQuanTri(){
+  $email = $_SESSION['user_admin'];
+  $thongTin = $this->modelTaiKhoan->getTaiKhoanformEmail($email);
+  // var_dump($thongTin);die;
+
+  require_once "./views/taikhoan/canhan/editCaNhan.php";
+  deleteSessionError();
 
 }
+ public function postEditMatKhauCaNhan(){
+  // var_dump($_POST);die();
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $old_pass = $_POST["old_pass"];
+    $new_pass = $_POST["new_pass"];
+    $confirm_pass = $_POST["confirm_pass"];
+
+  
+
+    $user = $this->modelTaiKhoan->getTaiKhoanformEmail($_SESSION["user_admin"]);
+    
+    $checkPass = password_verify($old_pass, $user["mat_khau"]);
+    
+    $error = [];
+    if(!$checkPass){
+      $error["old_pass"] = "Mật khẩu người dùng không đúng !";
+    }
+    if($new_pass !== $confirm_pass){
+      $error["confirm_pass"] = "Mật khẩu nhập lại không đúng !";
+    }
+    // Validate 
+    if(empty($old_pass)){
+      $error["old_pass"] = "Mật khẩu cũ không được bỏ trống !";
+    }
+    if(empty($new_pass)){
+      $error["new_pass"] = "Nhập mật khẩu mới không được bỏ trống !";
+    }
+    if(empty($confirm_pass)){
+      $error["confirm_pass"] = "Xác minh lại mật khẩu mới không được bỏ trống !";
+    }
+    $_SESSION ['error'] = $error;
+    if(!$error){ // Nếu không có lỗi gì
+      $hashPass = password_hash($new_pass, PASSWORD_BCRYPT);
+      $status = $this->modelTaiKhoan->resetPassword($user["id"], $hashPass);// Thực hiện đổi mật khẩu
+      if($status){
+        $_SESSION['success'] = "Đã sửa thành công !";
+        $_SESSION['flash'] = true;
+        header("Location:" .BASE_URL_ADMIN. "?act=form-sua-thong-tin-ca-nhan-quan-tri");
+      }
+    }else{
+      
+      $_SESSION["flash"] = true;
+      header("Location: " .BASE_URL_ADMIN. "?act=form-sua-thong-tin-ca-nhan-quan-tri");
+      exit();
+
+    }
+
+ }
+
+}
+
+
+
+ }
+
+
 
 
 ?>

@@ -13,7 +13,7 @@
           <img src="./assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Quyennqph54332</a>
+          <a href="#" class="d-block"><?=$thongTin["ho_ten"]?></a>
         </div>
       </div>
 
@@ -73,7 +73,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="<?= BASE_URL_ADMIN . "?act=form-sua-thong-tin-ca-nhan-quan-tri"?>" class="nav-link">
                   <i class="nav-icon far fa-user"></i>
                   <p>Tài khoản cá nhân</p>
                 </a>

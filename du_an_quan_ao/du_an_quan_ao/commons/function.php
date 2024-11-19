@@ -46,8 +46,10 @@ function deleteSessionError(){
    if(isset($_SESSION['flash'])){
     // Hủy Session sau khi đã tải trang
     unset($_SESSION['flash']);
-    session_unset();
-    session_destroy();
+    unset($_SESSION['error']);
+    unset($_SESSION['success']);
+    // session_unset();
+    // session_destroy();
 
    }
 }
@@ -64,4 +66,15 @@ function uploadFileAlbum($file, $folderUpload, $key){
 } 
 function formatDate($date){
     return date("d-m-Y", strtotime($date));
+}
+
+function checkLoginAdmin(){
+    if(!isset($_SESSION['user_admin'])){ // Không có session thì redirect về trang login
+        // header("Location: " . BASE_URL_ADMIN . "?act=login-admin");
+        require_once "./views/auth/formLogin.php";
+        exit();
+
+
+    }
+
 }

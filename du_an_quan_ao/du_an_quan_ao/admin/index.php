@@ -19,15 +19,15 @@ require_once './models/AdminDonHang.php';
 require_once './models/AdminTaiKhoan.php';
 // Route
 $act = $_GET['act'] ?? '/';
-
+if($act !== "login-admin" && $act !== "check-login-admin" && $act !== "logout-admin"){
+checkLoginAdmin();
+}
 
 match ($act) {
     // route
     'danh-muc' => (new AdminDanhMucController())->danhSachDanhMuc(),
     'form-them-danh-muc' => (new AdminDanhMucController())->formAddDanhMuc(), //Phương thức hiển thị form
     'them-danh-muc' => (new AdminDanhMucController())->postAddDanhMuc(), //Xử lí nhận và post vào CSDL
-
-   
     'form-sua-danh-muc' => (new AdminDanhMucController())->formEditDanhMuc(), //Phương thức hiển thị form sửa
     'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(), //Xử lí nhận và cập nhật vào CSDL 
     'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(), //Xử lí nhận và cập nhật vào CSDL 
@@ -35,13 +35,13 @@ match ($act) {
 
     // route sản phẩm
     'san-pham' => (new AdminSanPhamController())->danhSachSanPham(),
-    'form-them-san-pham' => (new AdminSanPhamController())->formAddSanPham(), //Phương thức hiển thị form
-    'them-san-pham' => (new AdminSanPhamController())->postAddSanPham(), //Xử lí nhận và post vào CSDL
-    'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(), //Phương thức hiển thị form sửa
+    'form-them-san-pham' => (new AdminSanPhamController())->formAddSanPham(), //Phương thức hiển thị form thêm SP
+    'them-san-pham' => (new AdminSanPhamController())->postAddSanPham(), //Xử lí nhận và post SP mới vào CSDL
+    'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(), //Phương thức hiển thị form sửa SP
     'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(), //Xử lí nhận và cập nhật vào CSDL 
     'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(), //Xử lí nhận và cập nhật vào CSDL 
     'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(), //Xử lí nhận và cập nhật vào CSDL 
-    'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(), //Phương thức hiển thị form sửa
+    'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(), //Phương thức hiển thị chi tiết SP
 
     // route bình luận (update ẩn bỏ ẩn)
     'update-trang-thai-binh-luan'=> (new AdminSanPhamController())->updateTrangThaiBinhLuan(),
@@ -74,6 +74,15 @@ match ($act) {
         'sua-khach-hang'=>(new AdminTaiKhoanController())->postEditKhachHang(),
         'chi-tiet-khach-hang' =>(new AdminTaiKhoanController())->detailKhachHang(),
 
-   
-   
+        // Quản lí thông tin cá nhân (Quản trị)
+        'form-sua-thong-tin-ca-nhan-quan-tri' =>(new AdminTaiKhoanController())->formEditCaNhanQuanTri(),
+        // 'sua-thong-tin-ca-nhan-quan-tri' =>(new AdminTaiKhoanController())->postEditCaNhanQuanTri(),
+    
+
+        'sua-mat-khau-ca-nhan-quan-tri' =>(new AdminTaiKhoanController())->postEditMatKhauCaNhan(),
+
+    //Route auth
+    'login-admin' => (new AdminTaiKhoanController())->formLogin(),
+    'check-login-admin' => (new AdminTaiKhoanController())->login(),
+    'logout-admin' => (new AdminTaiKhoanController())->logout(),
 };

@@ -10,17 +10,32 @@ class HomeController
     }
 
     public function home(){
-        echo "Đây là trang home 1234";
+        $listSanPham = $this->modelSanPham->getAllSanPham();
+       require_once './views/home.php';
     }
     
-    public function trangchu(){
-        echo "Đây là trang chủ của tôi";
-    }
+   
+    public function chiTietSanPham(){
+        // hàm này hiện form nhập
+        // Lấy ra thông tin của sản phẩm cần sửa đã viết ở model
+        $id = $_GET["id"];
+        // var_dump($id);die;
 
-    public function danhSachSanPham(){
-        // echo "Đây là danh sách sản phẩm";
-        $listProduct = $this->modelSanPham->getAllProduct();
-        // var_dump($listProduct);die();
-        require_once './views/listProduct.php';
+        $sanPham = $this->modelSanPham->getDetailSanPham($id);
+
+        $listAnhSanPham = $this->modelSanPham->getListAnhSanPham($id);
+        
+        $listBinhLuan = $this->modelSanPham->getBinhLuanFromSanPham($id);
+
+        $listSanPhamCungDanhMuc = $this->modelSanPham->getListSanPhamDanhMuc($sanPham['category_id']);
+        if($sanPham){
+          require_once './views/detailSanPham.php';
+       
+    
+        }else{
+            // var_dump("123");die();
+          header("Location: " . BASE_URL);
+          exit();
+        } 
     }
 }

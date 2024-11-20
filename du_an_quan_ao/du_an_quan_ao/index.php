@@ -22,9 +22,10 @@ match ($act) {
     // route
     '/' => (new HomeController())->home(), //trường hợp đặc biệt
 
-    'trangchu' => (new HomeController)->trangchu(),
+    // 'trangchu' => (new HomeController)->trangchu(),
     // Base URL/?act=trangchu
 
-    'danh-sach-san-pham' => (new HomeController)->danhSachSanPham(),
+    // 'danh-sach-san-pham' => (new HomeController)->danhSachSanPham(),
         // Base URL/?act=danh-sach-san-pham
+    'chi-tiet-san-pham' => (new HomeController())->chiTietSanPham(),
 };

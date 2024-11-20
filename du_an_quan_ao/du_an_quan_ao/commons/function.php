@@ -73,8 +73,10 @@ function checkLoginAdmin(){
         // header("Location: " . BASE_URL_ADMIN . "?act=login-admin");
         require_once "./views/auth/formLogin.php";
         exit();
-
-
     }
+
+function formatPrice($price){
+    return number_format($price, 0, ',', '.');
+}
 
 }

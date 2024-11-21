@@ -129,7 +129,7 @@
                                                         <div class="review-box">
                                                          
                                                             <div class="post-author">
-                                                                <p><span>Khách hàng    </span><?="| ngày đăng "  .formatDate($binhLuan["ngay_dang"])?></p>
+                                                                <p><span><?= $binhLuan["ho_ten"] ?>   </span><?="| ngày đăng "  .formatDate($binhLuan["ngay_dang"])?></p>
                                                             </div>
                                                             <p><?= $binhLuan["noi_dung"]?></p>
                                                         </div>

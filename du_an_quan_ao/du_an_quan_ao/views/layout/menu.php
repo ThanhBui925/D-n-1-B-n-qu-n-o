@@ -61,7 +61,11 @@
                                     <ul class="nav justify-content-end">
                                         <label for="">
                                             <?php if(isset($_SESSION["user_client"])){
-                                                echo $_SESSION["user_client"];
+                                                // echo $_SESSION["user_client"];
+                                                $originalString = $_SESSION["user_client"];  
+                                                $arrayOfStrings = explode("@", $originalString); // Cắt theo @
+                                                $firstPart = $arrayOfStrings[0]; // Lấy phần đầu tiên  
+                                                echo $firstPart;
                                             } ?>
                                         </label>
                                         <li class="user-hover">
@@ -76,7 +80,6 @@
                                                 <?php } ?>
                                             </ul>
                                         </li>
-                                        
                                         <li>
                                             <a href="#" class="minicart-btn">
                                                 <i class="pe-7s-shopbag"></i>

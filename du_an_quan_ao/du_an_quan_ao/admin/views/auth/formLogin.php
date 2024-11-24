@@ -85,12 +85,14 @@
                 <a href="./assets/index2.html" class="h1">Welcome !</a>
             </div>
             <div class="card-body"> 
-                <?php if(isset($_SESSION["error"])){ ?>
-                    <p class="text-danger"><?= $_SESSION["error"]?></p>
+            <?php if(isset($_SESSION["error"])){ ?>
+                    <p class="text-danger"><?php foreach($_SESSION["error"] as $error){
+                        echo $error;
+                    } ?></p>
                 <?php }else{?>
                     <p class="login-box-msg">Vui lòng đăng nhập</p>
                 <?php } ?>
-              
+               
 
                 <form action="<?= BASE_URL_ADMIN.'?act=check-login-admin'?>" method="post">
                     <div class="input-group mb-3">

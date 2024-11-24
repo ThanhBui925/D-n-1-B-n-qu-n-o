@@ -120,7 +120,7 @@ class AdminTaiKhoanController{
       $tai_khoan = $this->modelTaiKhoan->getDetailTaiKhoan($tai_khoan_id);
        // đặt pass mặc định  - 123@123ab
        $password = password_hash("123@123ab", PASSWORD_BCRYPT);
-
+      //  $password = "123@123ab";
       $status = $this->modelTaiKhoan->resetPassword($tai_khoan_id, $password);
       if($status && $tai_khoan["position_id"] == 1){
         header("Location: " .BASE_URL_ADMIN. '?act=list-tai-khoan-quan-tri');
@@ -302,7 +302,7 @@ public function formEditCaNhanQuanTri(){
         header("Location:" .BASE_URL_ADMIN. "?act=form-sua-thong-tin-ca-nhan-quan-tri");
       }
     }else{
-      
+       
       $_SESSION["flash"] = true;
       header("Location: " .BASE_URL_ADMIN. "?act=form-sua-thong-tin-ca-nhan-quan-tri");
       exit();

@@ -32,4 +32,9 @@ match ($act) {
     // auth
     'login' => (new HomeController())->formLogin(),
     'check-login' => (new HomeController())->postLogin(),
+    'register' => $_SERVER['REQUEST_METHOD'] === 'POST' 
+    ? (new HomeController())->postRegister()
+    : (new HomeController())->formRegister(),
+
+    'logout' => (new HomeController())->logout(), // Đăng xuất
 };

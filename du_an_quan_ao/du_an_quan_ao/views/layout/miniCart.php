@@ -27,23 +27,7 @@
                                 </div>
                                 <button class="minicart-remove"><i class="pe-7s-close"></i></button>
                             </li>
-                            <li class="minicart-item">
-                                <div class="minicart-thumb">
-                                    <a href="product-details.html">
-                                        <img src="assets/img/cart/cart-2.jpg" alt="product">
-                                    </a>
-                                </div>
-                                <div class="minicart-content">
-                                    <h3 class="product-name">
-                                        <a href="product-details.html">Dozen White Botanical Linen Dinner Napkins</a>
-                                    </h3>
-                                    <p>
-                                        <span class="cart-quantity">1 <strong>&times;</strong></span>
-                                        <span class="cart-price">$80.00</span>
-                                    </p>
-                                </div>
-                                <button class="minicart-remove"><i class="pe-7s-close"></i></button>
-                            </li>
+                         
                         </ul>
                     </div>
 
@@ -70,7 +54,7 @@
 
                     <div class="minicart-button">
                         <a href="<?= BASE_URL . '?act=gio-hang'?>"><i class="fa fa-shopping-cart"></i> Xem giỏ hàng</a>
-                        <a href="cart.html"><i class="fa fa-share"></i>Thanh toán</a>
+                        <a href="<?= BASE_URL . '?act=thanh-toan'?>"></i>Thanh toán</a>
                     </div>
                 </div>
             </div>

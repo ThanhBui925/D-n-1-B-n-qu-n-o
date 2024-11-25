@@ -19,19 +19,19 @@
                                 </div>
                             </div>
                             <div class="widget-body">
-                                <p>We are a team of designers and developers that create high quality wordpress, shopify, Opencart </p>
+                                <p>Chúng tôi chuyên cung cấp các sản phẩm quần áo công sở nam chất lượng cao, với phong cách lịch lãm, hiện đại và giá cả hợp lý.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="widget-item">
-                            <h6 class="widget-title">Contact Us</h6>
+                            <h6 class="widget-title">Liên hệ</h6>
                             <div class="widget-body">
                                 <address class="contact-block">
                                     <ul>
-                                        <li><i class="pe-7s-home"></i> 4710-4890 Breckinridge USA</li>
-                                        <li><i class="pe-7s-mail"></i> <a href="mailto:demo@plazathemes.com">demo@yourdomain.com </a></li>
-                                        <li><i class="pe-7s-call"></i> <a href="tel:(012)800456789987">(012) 800 456 789-987</a></li>
+                                        <li><i class="pe-7s-home"></i> Số 123, Đường Trịnh Văn Bô, Quận Nam Từ Liêm, TP. Hà Nội</li>
+                                        <li><i class="pe-7s-mail"></i> <a href="mailto:mensweet@gmail.com">mensweet@gmail.com</a></li>
+                                        <li><i class="pe-7s-call"></i> <a href="tel:(012)0123 456 789">0123 456 789</a></li>
                                     </ul>
                                 </address>
                             </div>
@@ -39,16 +39,16 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="widget-item">
-                            <h6 class="widget-title">Information</h6>
-                            <div class="widget-body">
-                                <ul class="info-list">
-                                    <li><a href="#">about us</a></li>
-                                    <li><a href="#">Delivery Information</a></li>
-                                    <li><a href="#">privet policy</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                    <li><a href="#">contact us</a></li>
-                                    <li><a href="#">site map</a></li>
-                                </ul>
+                        <h6 class="widget-title">Thông tin hỗ trợ</h6>
+                        <div class="widget-body">
+                            <ul class="info-list">
+                                <li><a href="#">Về chúng tôi</a></li>
+                                <li><a href="#">Chính sách giao hàng</a></li>
+                                <li><a href="#">Chính sách bảo mật</a></li>
+                                <li><a href="#">Điều khoản sử dụng</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Bản đồ trang web</a></li>
+                            </ul>
                             </div>
                         </div>
                     </div>

@@ -17,6 +17,10 @@ class HomeController
 
     public function home(){
         $listSanPham = $this->modelSanPham->getAllSanPham();
+        
+        $sanPhamAoSoMi = $this->modelSanPham->getSanPhamByDanhMuc('Áo sơ mi');
+
+
        require_once './views/home.php';
     }
     
@@ -195,4 +199,78 @@ class HomeController
       }
     }
      
+
+
+
+
+
+    public function formRegister()
+    {
+        require_once "./views/auth/formRegister.php";
+        deleteSessionError(); // Xóa thông báo lỗi nếu có
+    }
+
+
+
+    public function postRegister()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $ho_ten = $_POST['ho_ten'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $confirm_password = $_POST['confirm_password'];
+            $so_dien_thoai = $_POST['so_dien_thoai'];
+            $ngay_sinh = $_POST['ngay_sinh'];
+            $gioi_tinh = $_POST['gioi_tinh'];
+            $dia_chi = $_POST['dia_chi'];
+    
+            // Kiểm tra mật khẩu khớp
+            if ($password !== $confirm_password) {
+                $_SESSION['error'] = "Mật khẩu không khớp.";
+                header("Location: " . BASE_URL . "?act=register");
+                exit();
+            }
+    
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
+            // Kiểm tra email đã tồn tại
+            $existingUser = $this->modelTaiKhoan->getTaiKhoanfromEmail($email);
+            if ($existingUser) {
+                $_SESSION['error'] = "Email đã được sử dụng.";
+                header("Location: " . BASE_URL . "?act=register");
+                exit();
+            }
+    
+            // Thêm tài khoản mới
+            $result = $this->modelTaiKhoan->register($ho_ten, $email, $hashed_password, $so_dien_thoai, $ngay_sinh, $gioi_tinh, $dia_chi);
+    
+            if ($result) {
+              echo "<script>
+                  alert('Đăng kí thành công, mời bạn đăng nhập');
+                  window.location.href = '" . BASE_URL . "?act=login';
+              </script>";
+              exit();
+          } else {
+              echo "<script>
+                  alert('Đã có lỗi xảy ra, vui lòng thử lại.');
+                  window.location.href = '" . BASE_URL . "?act=register';
+              </script>";
+              exit();
+          }
+        }
+    }
+
+
+
+
+    public function logout()
+{
+    // Hủy tất cả các session của người dùng
+    session_unset();
+    session_destroy();
+
+    // Chuyển hướng về trang chủ hoặc trang đăng nhập
+    header("Location: " . BASE_URL);
+    exit();
+}
   }

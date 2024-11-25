@@ -66,10 +66,6 @@
         <!-- login register wrapper end -->
     </main>
 
-
-   
-  
-
     <!-- offcanvas mini cart start -->
     <div class="offcanvas-minicart-wrapper">
         <div class="minicart-inner">

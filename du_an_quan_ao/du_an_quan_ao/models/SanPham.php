@@ -26,6 +26,25 @@ class SanPham{
             echo "Lỗi" . $e->getMessage();
     }
 }
+
+public function getSanPhamByDanhMuc($tenDanhMuc) {
+    try {
+        $sql = "SELECT products.*, categories.ten_danh_muc
+                FROM products
+                INNER JOIN categories ON products.category_id = categories.id
+                WHERE categories.ten_danh_muc = :ten_danh_muc";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':ten_danh_muc' => $tenDanhMuc]); // Thay thế giá trị tham số
+
+        return $stmt->fetchAll();
+
+    } catch (Exception $e) {
+        echo "Lỗi: " . $e->getMessage();
+        return [];
+    }
+}
+
 public function getDetailSanPham($id){
     try{
         $sql = "SELECT products.*, categories.ten_danh_muc

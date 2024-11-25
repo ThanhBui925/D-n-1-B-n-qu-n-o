@@ -48,5 +48,29 @@ class TaiKhoan{
             echo "Lỗi".      $e->getMessage();
         }
     }
+
+
+
+    public function register($ho_ten, $email, $mat_khau, $so_dien_thoai, $ngay_sinh, $gioi_tinh, $dia_chi)
+    {
+        try {
+            $sql = "INSERT INTO users (ho_ten, email, mat_khau, so_dien_thoai, ngay_sinh, gioi_tinh, dia_chi, position_id, trang_thai) 
+                    VALUES (:ho_ten, :email, :mat_khau, :so_dien_thoai, :ngay_sinh, :gioi_tinh, :dia_chi, 2, 1)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':ho_ten' => $ho_ten,
+                ':email' => $email,
+                ':mat_khau' => $mat_khau,
+                ':so_dien_thoai' => $so_dien_thoai,
+                ':ngay_sinh' => $ngay_sinh,
+                ':gioi_tinh' => $gioi_tinh,
+                ':dia_chi' => $dia_chi,
+            ]);
+            return true;
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 ?>
